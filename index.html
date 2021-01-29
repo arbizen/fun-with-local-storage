@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>To check the local storage value, inspect the page and go to 'Application' tab and then 'local storage'.</p>
+    <button id="showValue">Show note data</button>
+    <button id="del">Delete note data</button>
+    <script src="js/Storage.js"></script>
+    <script>
+        // storage object
+        const storage = new Storage();
+        // now the variable 'storage' has all the methods that we've defined in the 'Storage' class
+        // let's a value in local storage
+        // this data could be anything.. object, array, number or string..
+        const data = {
+            title: 'Amazing note.',
+            content: 'This is some good content.',
+            thumbnail: 'images/uhm.jpg'
+        };
+        storage.set_value('noteData', data);
+        // let's try to get the value when the 'show value' button is clicked.
+        showValue.addEventListener('click', () => {
+            const value = storage.get_value('noteData');
+            alert(JSON.stringify(value)); // stringify to see in the alert.
+            console.log(value);
+        });
+        // let's try to delete the value when the 'show value' button is clicked.
+        del.addEventListener('click', () => {
+            storage.delete_value('noteData');
+            alert('deleted');
+        });
+    </script>
+</body>
+</html>
